@@ -140,7 +140,7 @@
                 </ul>
                 <ul id="disciplina">
                     <li><a href="insertDisciplina.jsp" class="btn">Inserir Disciplina</a></li>
-                    <li><a href="viewDisciplinas.jsp" class="btn">Visualizar Disciplinas</a></li>
+                    <li><a href="viewDisciplina.jsp" class="btn">Visualizar Disciplinas</a></li>
                     <li><a href="updateDisciplina.jsp" class="btn">Atualizar Disciplina</a></li>
                     <li><a href="deleteDisciplina.jsp" class="btn">Deletar Disciplina</a></li>
                 </ul>
@@ -151,6 +151,14 @@
                     <li><a href="viewCurriculo.jsp" class="btn">Visualizar Currículos</a></li>
                     <li><a href="updateCurriculo.jsp" class="btn">Atualizar Currículo</a></li>
                     <li><a href="deleteCurriculo.jsp" class="btn">Deletar Currículo</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="departamento">
+                    <li><a href="insertDepartamento.jsp" class="btn">Inserir Departamento</a></li>
+                    <li><a href="viewDepartamento.jsp" class="btn">Visualizar Departamento</a></li>
+                    <li><a href="updateDepartamento.jsp" class="btn">Atualizar Departamento</a></li>
+                    <li><a href="deleteDepartamento.jsp" class="btn">Deletar Departamento</a></li>
                 </ul>
             </div>
         </div>
