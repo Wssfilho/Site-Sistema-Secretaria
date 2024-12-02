@@ -21,7 +21,7 @@
         main {
             padding: 20px;
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: wrap; /* Permite que os itens pularem uma linha quando necessário */
             gap: 50px; /* Espaço entre as listas */
         }
 
@@ -83,18 +83,17 @@
             transform: scale(1.1); /* Aumenta o tamanho do botão quando o mouse passa sobre ele */
         }
 
-        /* Estilo para listas lado a lado */
         .container {
             display: flex;
+            flex-wrap: wrap; /* Permite que os itens pularem uma linha quando necessário */
+            gap: 20px; /* Espaço entre os itens */
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 50px; /* Espaço entre as listas */
         }
 
-        .column {
+        .item {
             display: flex;
             flex-direction: column;
-            gap: 20px; /* Espaço entre as listas verticais */
+            gap: 10px; /* Espaço entre os botões */
         }
     </style>
     <script>
@@ -123,7 +122,7 @@
     </header>
     <main>
         <div class="container">
-            <div class="column">
+            <div class="item">
                 <ul>
                     <li><a href="insertAluno.jsp" class="btn">Inserir Aluno</a></li>
                     <li><a href="viewAlunos.jsp" class="btn">Visualizar Alunos</a></li>
@@ -131,7 +130,7 @@
                     <li><a href="deleteAluno.jsp" class="btn">Deletar Aluno</a></li>
                 </ul>
             </div>
-            <div class="column">
+            <div class="item">
                 <ul id="curso">
                     <li><a href="insertCurso.jsp" class="btn">Inserir Curso</a></li>
                     <li><a href="viewCursos.jsp" class="btn">Visualizar Cursos</a></li>
@@ -145,7 +144,7 @@
                     <li><a href="deleteDisciplina.jsp" class="btn">Deletar Disciplina</a></li>
                 </ul>
             </div>
-            <div class="column">
+            <div class="item">
                 <ul id="curriculo">
                     <li><a href="insertCurriculo.jsp" class="btn">Inserir Currículo</a></li>
                     <li><a href="viewCurriculo.jsp" class="btn">Visualizar Currículos</a></li>
@@ -153,12 +152,20 @@
                     <li><a href="deleteCurriculo.jsp" class="btn">Deletar Currículo</a></li>
                 </ul>
             </div>
-            <div class="column">
+            <div class="item">
                 <ul id="departamento">
                     <li><a href="insertDepartamento.jsp" class="btn">Inserir Departamento</a></li>
-                    <li><a href="viewDepartamento.jsp" class="btn">Visualizar Departamento</a></li>
+                    <li><a href="viewDepartamentos.jsp" class="btn">Visualizar Departamentos</a></li>
                     <li><a href="updateDepartamento.jsp" class="btn">Atualizar Departamento</a></li>
                     <li><a href="deleteDepartamento.jsp" class="btn">Deletar Departamento</a></li>
+                </ul>
+            </div>
+            <div class="item">
+                <ul id="conceito">
+                    <li><a href="insertConceito.jsp" class="btn">Inserir Conceito</a></li>
+                    <li><a href="viewConceito.jsp" class="btn">Visualizar Conceitos</a></li>
+                    <li><a href="updateConceito.jsp" class="btn">Atualizar Conceito</a></li>
+                    <li><a href="deleteConceito.jsp" class="btn">Deletar Conceito</a></li>
                 </ul>
             </div>
         </div>

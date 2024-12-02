@@ -99,19 +99,26 @@
                 try {
                     conn = DatabaseConnection.getConnection();
                     
-                    // Deleta as referências na tabela curriculo
-                    String sql = "DELETE FROM Curriculo WHERE CodigoCurso = ?";
-                    ps = conn.prepareStatement(sql);
+                    // Verifica se existem alunos associados ao curso
+                    String sqlCheckAlunos = "SELECT COUNT(*) FROM Aluno WHERE CodigoCurso = ?";
+                    ps = conn.prepareStatement(sqlCheckAlunos);
                     ps.setInt(1, codigoCurso);
-                    ps.executeUpdate();
+                    ResultSet rs = ps.executeQuery();
+                    rs.next();
+                    int count = rs.getInt(1);
+                    rs.close();
+                    ps.close();
 
-                    // Deleta o curso na tabela curso
-                    sql = "DELETE FROM Curso WHERE CodigoCurso = ?";
-                    ps = conn.prepareStatement(sql);
-                    ps.setInt(1, codigoCurso);
-                    ps.executeUpdate();
-
-                    out.println("Curso deletado com sucesso!<br>");
+                    if (count > 0) {
+                        out.println("Erro: Não é possível deletar o curso, pois existem alunos associados a ele.<br>");
+                    } else {
+                        // Deleta o curso se não houver alunos associados
+                        String sqlDeleteCurso = "DELETE FROM Curso WHERE CodigoCurso = ?";
+                        ps = conn.prepareStatement(sqlDeleteCurso);
+                        ps.setInt(1, codigoCurso);
+                        ps.executeUpdate();
+                        out.println("Curso deletado com sucesso!<br>");
+                    }
                 } catch (SQLException e) {
                     e.printStackTrace();
                     out.println("Erro ao deletar curso: " + e.getMessage() + "<br>");

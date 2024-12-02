@@ -106,7 +106,7 @@
             Nome: <input type="text" name="nome" required><br>
             Código do Curso: <input type="text" name="codigoCurso" required><br>
             <input type="submit" value="Inserir">
-        </form>
+        </form>              
         <form action="index.jsp" method="get">
             <input type="submit" value="Voltar para a Página Inicial" class="btn">
         </form>

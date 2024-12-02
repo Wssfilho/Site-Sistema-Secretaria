@@ -2,7 +2,7 @@
 <%@ page import="scr.DatabaseConnection" %>
 <html>
 <head>
-    <title>Deletar Curso</title>
+    <title>Deletar Conceito</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -82,46 +82,36 @@
 </head>
 <body>
     <header>
-        <h2>Deletar Curso</h2>
+        <h2>Deletar Conceito</h2>
     </header>
     <main>
-        <form action="deleteCurso.jsp" method="post">
-            Código do Curso: <input type="text" name="codigoCurso" required><br>
+        <form action="deleteConceito.jsp" method="post">
+            Código do Aluno: <input type="text" name="codigoAluno" required><br>
+            Código da Disciplina: <input type="text" name="codigoDisciplina" required><br>
+            Ano/Semestre: <input type="text" name="anoSemestre" required><br>
             <input type="submit" value="Deletar">
         </form>
         <%
             if (request.getMethod().equalsIgnoreCase("post")) {
-                int codigoCurso = Integer.parseInt(request.getParameter("codigoCurso"));
+                int codigoAluno = Integer.parseInt(request.getParameter("codigoAluno"));
+                int codigoDisciplina = Integer.parseInt(request.getParameter("codigoDisciplina"));
+                String anoSemestre = request.getParameter("anoSemestre");
 
                 Connection conn = null;
                 PreparedStatement ps = null;
 
                 try {
                     conn = DatabaseConnection.getConnection();
-                    
-                    // Verifica se existem alunos associados ao curso
-                    String sqlCheckAlunos = "SELECT COUNT(*) FROM Aluno WHERE CodigoCurso = ?";
-                    ps = conn.prepareStatement(sqlCheckAlunos);
-                    ps.setInt(1, codigoCurso);
-                    ResultSet rs = ps.executeQuery();
-                    rs.next();
-                    int count = rs.getInt(1);
-                    rs.close();
-                    ps.close();
-
-                    if (count > 0) {
-                        out.println("Erro: Não é possível deletar o curso, pois existem alunos associados a ele.<br>");
-                    } else {
-                        // Deleta o curso se não houver alunos associados
-                        String sqlDeleteCurso = "DELETE FROM Curso WHERE CodigoCurso = ?";
-                        ps = conn.prepareStatement(sqlDeleteCurso);
-                        ps.setInt(1, codigoCurso);
-                        ps.executeUpdate();
-                        out.println("Curso deletado com sucesso!<br>");
-                    }
+                    String sql = "DELETE FROM Conceito WHERE CodigoAluno = ? AND CodigoDisciplina = ? AND AnoSemestre = ?";
+                    ps = conn.prepareStatement(sql);
+                    ps.setInt(1, codigoAluno);
+                    ps.setInt(2, codigoDisciplina);
+                    ps.setString(3, anoSemestre);
+                    ps.executeUpdate();
+                    out.println("Conceito deletado com sucesso!<br>");
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    out.println("Erro ao deletar curso: " + e.getMessage() + "<br>");
+                    out.println("Erro ao deletar conceito: " + e.getMessage() + "<br>");
                 } finally {
                     if (ps != null) ps.close();
                     if (conn != null) conn.close();
